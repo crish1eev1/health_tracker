@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 # SCRIPT EXTRACT_DATA.PY DESCRIPTION
-# Input: Garmin SQLite Databases paths (after executing garmindb_cli.py --all --download --import --analyze --latest)
+# Input: Garmin SQLite Databases paths (after executing cd .\venv\Scripts\ then  py garmindb_cli.py --all --download --import --analyze --latest)
 # Output: Pickle and CSV files of potentially useful tables (data/raw)
 # -----------------------------------------------------------------------------
 import pandas as pd

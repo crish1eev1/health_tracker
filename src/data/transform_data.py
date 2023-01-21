@@ -769,6 +769,7 @@ df_garmin_monitoring.to_csv("../../data/processed/garmin_monitoring.csv")
 
 df_garmin_days.to_pickle("../../data/processed/garmin_days.pkl")
 df_garmin_days.to_csv("../../data/processed/garmin_days.csv")
+df_garmin_days.to_pickle("../../src/dashboard/data/garmin_days.pkl")
 
 df_garmin_weeks.to_pickle("../../data/processed/garmin_weeks.pkl")
 df_garmin_weeks.to_csv("../../data/processed/garmin_weeks.csv")
