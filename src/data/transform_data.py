@@ -232,7 +232,7 @@ df_garmin_days["deep_sleep"] = df_garmin_days["deep_sleep"].shift(-1)
 df_garmin_days["light_sleep"] = df_garmin_days["light_sleep"].shift(-1)
 df_garmin_days["rem_sleep"] = df_garmin_days["rem_sleep"].shift(-1)
 df_garmin_days["awake"] = df_garmin_days["awake"].shift(-1)
-df_garmin_days["avg_rr"] = df_garmin_days["awake"].shift(-1)
+df_garmin_days["avg_rr"] = df_garmin_days["avg_rr"].shift(-1)
 
 print("night data shifted.")
 
@@ -437,7 +437,7 @@ print("Running info added to daily.")
 # Removing data from daily df when monitoring df doesn't include enough data
 # -----------------------------------------------------------------------------
 print("\n_____Removing data from daily for days with not enough data_____")
-
+print("Days removed because of less than 50% data available from monitoring table:")
 # Create a new column that indicates whether the row has NaN values
 df_garmin_monitoring["has_nan"] = (
     df_garmin_monitoring[["stress", "heart_rate", "rr"]].isna().any(axis=1)
@@ -488,7 +488,9 @@ df_garmin_days.drop(rows_to_replace, inplace=True)
 # Drop the has_nan column from the dataframe
 df_garmin_days.drop("has_nan", axis=1, inplace=True)
 
-print("Days removed:")
+print(
+    "\nAdditional days removed because of at least one main aggregated daily data missing:"
+)
 for date in rows_to_replace:
     print(date)
 
@@ -558,6 +560,7 @@ for column in [
     "steps",
     "calories_total",
     "sweat_loss",
+    "avg_rr",
 ]:
     df_garmin_days[column] = df_garmin_days[column].round(1)
     df_garmin_weeks[column] = df_garmin_weeks[column].round(1)
@@ -587,7 +590,6 @@ for column in [
     "light_sleep",
     "rem_sleep",
     "awake",
-    "avg_rr",
 ]:
     df_garmin_months[column] = df_garmin_months[column].dt.round(freq="s")
     df_garmin_weeks[column] = df_garmin_weeks[column].dt.round(freq="s")
@@ -755,12 +757,6 @@ print("Columns renamed.")
 
 
 # -----------------------------------------------------------------------------
-# To Do
-# - Transform df_garmin_running df
-# -----------------------------------------------------------------------------
-
-
-# -----------------------------------------------------------------------------
 # Exporting the results
 # -----------------------------------------------------------------------------
 
@@ -773,9 +769,12 @@ df_garmin_days.to_pickle("../../src/dashboard/data/garmin_days.pkl")
 
 df_garmin_weeks.to_pickle("../../data/processed/garmin_weeks.pkl")
 df_garmin_weeks.to_csv("../../data/processed/garmin_weeks.csv")
+df_garmin_weeks.to_pickle("../../src/dashboard/data/garmin_weeks.pkl")
 
 df_garmin_months.to_pickle("../../data/processed/garmin_months.pkl")
 df_garmin_months.to_csv("../../data/processed/garmin_months.csv")
+df_garmin_months.to_pickle("../../src/dashboard/data/garmin_months.pkl")
+
 
 df_garmin_running
 df_garmin_running
@@ -790,3 +789,11 @@ df_garmin_running_steps
 df_garmin_running_steps
 
 print("Data exported.")
+
+
+# -----------------------------------------------------------------------------
+# To Do
+# - Transform df_garmin_running df
+# - Remove months with less than 10 days
+# - Remove weeks with less than 3 days
+# -----------------------------------------------------------------------------

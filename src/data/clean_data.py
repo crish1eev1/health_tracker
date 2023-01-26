@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------
 # SCRIPT CLEAN_DATA.PY DESCRIPTION
 # Input: Pickle and CSV files of potentially useful tables (data/raw)
-# Output: Pickle and CSV files of clean tables (data/interim)
+# Output: Pickle and CSV files of cleaned tables  (data/interim)
 # -----------------------------------------------------------------------------
 import pandas as pd
 
@@ -428,7 +428,9 @@ if diff1 == pd.Timedelta(hours=1) and diff2 == pd.Timedelta(hours=1):
     print("Adjustment performed. 1 hour added.")
 else:
     print("monitoring_stress dataframe is not 1 hour behind the other two dataframes.")
-    print("!!!!! \n !!!!! \n !!!!!")
+    print(
+        "!!!!!!!!!!!!!!!!!!!!! \n!!!!!!!!!!!!!!!!!!!! \n!!!!!!!!!!!!!!!!!!!!!!!  <--------------"
+    )
 
 print("\n")
 

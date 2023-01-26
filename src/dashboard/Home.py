@@ -4,6 +4,8 @@
 import streamlit as st
 from PIL import Image
 
+import os
+
 # -----------------------------------------------------------------------------
 # Home page
 # -----------------------------------------------------------------------------
@@ -32,6 +34,6 @@ st.markdown(
 """
 )
 
-image = Image.open("/src/dashboard/health_tracking_banner.png")
+image = Image.open("health_tracking_banner.png")
 
 st.image(image, caption="image generated with Midjourney")
