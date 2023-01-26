@@ -9,9 +9,9 @@ import time
 # Importing Data
 # -----------------------------------------------------------------------------
 
-df_days = pd.read_pickle("../../src/dashboard/data/garmin_days.pkl")
-df_weeks = pd.read_pickle("../../src/dashboard/data/garmin_weeks.pkl")
-df_months = pd.read_pickle("../../src/dashboard/data/garmin_months.pkl")
+df_days = pd.read_pickle("data/garmin_days.pkl")
+df_weeks = pd.read_pickle("data/garmin_weeks.pkl")
+df_months = pd.read_pickle("data/garmin_months.pkl")
 
 # -----------------------------------------------------------------------------
 # Transforming dataframes for the ease of streamlit components
